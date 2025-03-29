@@ -1,0 +1,21 @@
+{{ define "main" }}
+
+<article>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.subtitle -}}
+    <h3>{{ . }}</h2>
+    {{ end -}}
+    <p>
+    <time datetime="{{ .Date }}">
+        {{ .Date | time.Format site.Params.theme_config.date_format }}
+    </time>
+    /
+    {{ range (.GetTerms "categories") }}
+    <a href="{{ .RelPermalink }}">
+        {{ .LinkTitle }}
+    </a>
+    {{ end }}
+    </p>
+    {{ .Content }}
+</article>
+{{ end }}

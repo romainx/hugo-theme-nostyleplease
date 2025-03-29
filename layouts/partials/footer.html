@@ -3,9 +3,20 @@
     {{ if and $footerContent (ne $footerContent "") }}
         {{ $footerContent | markdownify }}
     {{ else }}
-        {{ warnf "layouts/footer.md file is not found or empty. Falling back to default footer." }}
         <footer class="site-footer">
-            <p>&copy; {{ now.Format "2006" }} {{ site.Title }}</p>
+            {{- if not site.Params.footer.hideCopyright }}
+            {{- if site.Copyright }}
+            <span>{{ site.Copyright | markdownify }}</span>
+            {{- else }}
+            <span>&copy; {{ site.Params.since }} - {{ now.Year }} ~ <a href="{{ "/about" | absLangURL }}">{{ site.Title }}</a></span>
+            {{- end }}
+            {{- print " ~ "}}
+        {{- end }}
+    
+        {{- with site.Params.footer.text }}
+            {{ . | markdownify }}
+            {{- print " · "}}
+        {{- end }}
         </footer>
     {{ end }}
 {{ end }}
