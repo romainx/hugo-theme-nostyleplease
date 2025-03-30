@@ -6,8 +6,8 @@
 
 <!-- divide post list by year  -->
 {{ if  .Site.Params.theme_config.isListGroupByDate  }}
-    {{ range .Pages.GroupByDate "2006 Year" }}
-    <p>{{ .Key }}</p>
+    {{ range .Pages.GroupByDate "2006" }}
+    <p>{{ .Key }} <sup>({{ len .Pages }})</sup></p> 
     <ul>
         {{ range .Pages }}
             <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
