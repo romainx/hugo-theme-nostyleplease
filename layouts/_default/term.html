@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{ partial "back_link.html" .}}
 
-<h1>{{ .Title }}</h1>
+<h1>{{ .Title }} <sup>({{ len .Pages }})</sup></h1>
 
 {{ .Content }}
 {{ partial "post_list.html" (dict "context" .)}}
